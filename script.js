@@ -17,7 +17,6 @@ const reset = () => {
     titleInput.value = "";
     dateInput.value = "";
     descriptionInput.value = "";
-
     taskForm.classList.toggle("hidden");
     currentTask = {};
 }
@@ -34,9 +33,8 @@ cancelBtn.addEventListener("click", () => confirmCloseDialog.close());
 
 discardBtn.addEventListener("click", () => {
     confirmCloseDialog.close();
-    taskForm.classList.toggle("hidden");
+    reset()
 });
-
 
 taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -67,5 +65,5 @@ taskForm.addEventListener("submit", (e) => {
         }
     );
 
-    taskForm.classList.toggle("hidden");
+    reset()
 });
