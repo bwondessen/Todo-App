@@ -24,6 +24,8 @@ const addOrUpdateTask = () => {
 
     if (dataArrIndex === -1) {
         taskData.unshift(taskObj);
+    } else {
+        taskData[dataArrIndex] = taskObj;
     }
 
     updateTaskContainer()
@@ -48,6 +50,7 @@ const updateTaskContainer = () => {
     );
 };
 
+
 const deleteTask = (buttonEl) => {
     const dataArrIndex = taskData.findIndex(
         (item) => item.id === buttonEl.parentElement.id
@@ -55,6 +58,22 @@ const deleteTask = (buttonEl) => {
 
     buttonEl.parentElement.remove();
     taskData.splice(dataArrIndex, 1);
+}
+
+const editTask = (buttonEl) => {
+    const dataArrIndex = taskData.findIndex(
+        (item) => item.id === buttonEl.parentElement.id
+    );
+
+    currentTask = taskData[dataArrIndex];
+
+    titleInput.value = currentTask.title;
+    dateInput.value = currentTask.date;
+    descriptionInput.value = currentTask.description;
+
+    addOrUpdateTaskBtn.innerText = "Update Task";
+
+    taskForm.classList.toggle("hidden");
 }
 
 const reset = () => {
@@ -71,6 +90,7 @@ openTaskFormBtn.addEventListener("click", () =>
 
 closeTaskFormBtn.addEventListener("click", () => {
     const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value;
+
     if (formInputsContainValues) {
         confirmCloseDialog.showModal();
     } else {
