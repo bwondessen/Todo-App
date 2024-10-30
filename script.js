@@ -31,7 +31,7 @@ const addOrUpdateTask = () => {
 };
 
 const updateTaskContainer = () => {
-
+    tasksContainer.innerHTML = "";
     taskData.forEach(
         ({ id, title, date, description }) => {
             tasksContainer.innerHTML += `
